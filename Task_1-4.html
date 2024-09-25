@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 20px;
+    }
+
+    .task {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      margin-top: 80px;
+    }
+
+    #bgchangepara {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      margin-top: 25px;
+    }
+
+    #bgchangebtn {
+      height: 70px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      margin-top: 35px;
+    }
+
+    #colorButton {
+      display: flex;
+      text-align: center;
+      background-color: rgba(123, 99, 146, 0.336);
+      color: #ffff;
+      padding: 27px;
+      border: 2px solid;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    #colorButton:hover {
+      background-color: rgb(160, 130, 200);
+      transform: scale(1.1);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    #colorButton:active {
+      transform: scale(0.95);
+      transition: transform 0.1s ease;
+    }
+  </style>
+</head>
+
+<body style="background-color: rgb(135, 222, 210); color: black; font-size: 20px;">
+  <div>
+    <h1 class="task">Task-4</h1>
+    <div id="bgchangepara">
+      <h4>
+        Click the below button and change the background color.
+      </h4>
+    </div>
+    <div id="bgchangebtn">
+      <button type="button" id="colorButton">Change Background Color</button>
+    </div>
+  </div>
+  <script>
+    
+function changeColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+document.getElementById('colorButton').addEventListener('click', function() {
+  document.body.style.backgroundColor = changeColor();
+});
+
+  </script>
+</body>
+
+</html>

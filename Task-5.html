@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Integration Example</title>
+  <style>
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #b71bf5;
+      cursor: default;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    #posts-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .post {
+      background-color: rgba(255, 255, 255, 0.26);
+      padding: 15px;
+      border-radius: 8px;
+      border: 2px solid #fff;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
+
+    .post:hover {
+      transform: translateY(-5px);
+    }
+
+    h3 {
+      color: #fbff00;
+    }
+
+    p {
+      color: #241d1d;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 style="font-size: 42px;">API Integration Example</h1>
+  <div id="posts-container"></div>
+
+  <script>
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(response => response.json())
+      .then(posts => {
+        displayPosts(posts); 
+      })
+      .catch(error => {
+        console.error('Error fetching posts:', error);
+      });
+
+    function displayPosts(posts) {
+      const postsContainer = document.getElementById('posts-container');
+      
+      posts.slice(0, 15).forEach(post => { 
+        const postElement = document.createElement('div');
+        postElement.classList.add('post');
+        
+        postElement.innerHTML = `
+          <h2>${post.title}</h2>
+          <p>${post.body}</p>
+        `;
+        
+        postsContainer.appendChild(postElement);
+      });
+    }
+  </script>
+
+</body>
+</html>
